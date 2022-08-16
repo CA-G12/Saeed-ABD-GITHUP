@@ -1,0 +1,47 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
+}
+/* Eroor 404 500 */
+.main {
+   flex: 1;
+ }
+.main {
+  padding-top: 2rem;
+   padding-bottom: 2rem;
+}
+
+.main__container--limited-width {
+  margin: 0 auto;
+  max-width: var(--limited-width-container);
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.main__container--full-width {
+  margin: 0 auto;
+  max-width: 100em;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.main__title {
+  margin-bottom: 1rem;
+}
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.error__desc {
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.error__msg {
+  color: #999;
+}
+/* home.html */
