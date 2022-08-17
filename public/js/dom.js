@@ -43,12 +43,3 @@ const repos = (obj) => {
 }
 repos()
 
-
-
-
-{/* <div class="repos"> */}
-          {/* <div class="repo-card"> */}
-            {/* <a href="#"><h3>Repo Name</h3></a> */}
-            {/* <span>HTML</span> */}
-          {/* </div> */}
-        {/* </div> */}
