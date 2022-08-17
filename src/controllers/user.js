@@ -10,5 +10,13 @@ const user = (req,res) => {
     }).then(data => data.json()).then(data => res.json(data))
     .catch(err => console.log(err))
 }
+const repos = (req,res) => {
+    let name = req.params.name
+    let token = process.env.ACCESS_TOKEN;
+    
+    const urlGit = `https://api.github.com/users/${name}/repos`;  
+    fetch(urlGit).then(data => data.json()).then(data => res.json(data))
+    .catch(err => console.log(err))
+}
 
-module.exports = user;
+module.exports = {user, repos};
