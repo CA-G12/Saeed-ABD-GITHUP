@@ -1,11 +1,11 @@
-const path = require('path');
+const path = require("path");
 
-const express = require('express');
-const routes = require('./routes');
+require("dotenv").config();
+const express = require("express");
+const routes = require("./routes");
 
 const app = express();
-app.use(routes)
-app.use(express.static(path.join(__dirname, '..', 'public')));
-
+app.use(express.static(path.join(__dirname, "..", "public")));
+app.use(routes);
 
 module.exports = app;
