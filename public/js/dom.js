@@ -1,45 +1,98 @@
-const resultContainer = document.querySelector('.result-container');
+const resultContainer = document.querySelector(".result-container");
 
-const card = (obj) => {
+const searchcontainer = document.querySelector(".search-result");
+const serchInput = document.getElementById("search");
+const reposDiv = document.createElement("div");
+reposDiv.classList.add("repos");
+resultContainer.appendChild(reposDiv);
 
-    const cardDiv = document.createElement('div');
-    cardDiv.classList.add('card');
-    const userimage = document.createElement('img');
-    cardDiv.appendChild(userimage);
-    const ancorUser = document.createElement('a');
-    cardDiv.appendChild(ancorUser);
-    const usaerName = document.createElement('h1')
-    ancorUser.appendChild(usaerName);
-    const span = document.createElement('span');
-    cardDiv.appendChild(span);
-    resultContainer.appendChild(cardDiv);
-    userimage.src = '/public/images/logo.jpeg';
-    ancorUser.href = '#';
-    usaerName.textContent = ' Saeed Madi ';
-    span.textContent = 'tranee';
+const delayKeyUp = (() => {
+  let timer = null;
+  const delay = (func, ms) => {
+    timer ? clearTimeout(timer) : null;
+    timer = setTimeout(func, ms);
+  };
+  return delay;
+})();
 
-}
-card()   
+serchInput.addEventListener("keyup", (e) => {
+  const query = e.target.value;
+  console.log(query);
+  delayKeyUp(() => {
+    if (query === "") {
+      searchcontainer.textContent = "";
+    } else {
+      fetch(`/users/${query}`)
+        .then((data) => data.json())
+        .then((data) => {
+          console.log(data);
+          rendersearchResult(data);
+        });
+    }
+  }, 500);
+});
+
+const card = (user, desc) => {
+  const cardDiv = document.createElement("div");
+  cardDiv.classList.add("card");
+  const userimage = document.createElement("img");
+  cardDiv.appendChild(userimage);
+  userimage.textContent = user.avatar_url;
+  const ancorUser = document.createElement("a");
+  cardDiv.appendChild(ancorUser);
+  const usaerName = document.createElement("h3");
+  ancorUser.appendChild(usaerName);
+  userName.textContent = user.login;
+  const span = document.createElement("span");
+  cardDiv.appendChild(span);
+  span.textContent = desc;
+  resultContainer.appendChild(cardDiv);
+};
+card();
 
 const repos = (obj) => {
+  const repoHome = document.createElement("div");
+  repoHome.classList.add("repo-card");
+  const repoAncor = document.createElement("a");
+  const textAncor = document.createElement("h3");
+  const repoSpan = document.createElement("span");
+  reposDiv.appendChild(repoHome);
+  repoHome.appendChild(repoAncor);
+  repoAncor.appendChild(textAncor);
+  repoHome.appendChild(repoSpan);
+  repoAncor.href = obj.html_url;
+  textAncor.textContent = obj.name;
+  repoSpan.textContent = obj.language;
+};
 
-    const reposDiv = document.createElement('div');
-    reposDiv.classList.add('repos')
-    const repoHome = document.createElement('div');
-    repoHome.classList.add('repo-card')
-    const repoAncor = document.createElement('a');
-    const textAncor = document.createElement('h3');
-    const repoSpan = document.createElement('span');
-    resultContainer.appendChild(reposDiv)
-    console.log(resultContainer);
-    reposDiv.appendChild(repoHome)
-    repoHome.appendChild(repoAncor)
-    repoAncor.appendChild(textAncor)
-    console.log(repoAncor);
-    repoHome.appendChild(repoSpan)
-    repoAncor.href = '#'
-    textAncor.textContent = 'Repo Name';
-    repoSpan.textContent = 'HTML';
+///////////////////////////////////////
+
+function rendersearchResult(arr) {
+  searchcontainer.textContent = "";
+  arr.forEach((ele) => {
+    let ancor = document.createElement("a");
+    ancor.id = ele.id;
+    ancor.textContent = ele.name;
+    searchcontainer.appendChild(ancor);
+    ancor.addEventListener("click", () => {
+      searchcontainer.textContent = "";
+      resultContainer.textContent = "";
+      fetch(`users/${ele.name}`)
+        .then((data) => data.json())
+        .then((data) => {
+          card(data, ele.description);
+        })
+        .catch((err) => console.log(err));
+      fetch(`users/${ele.name}/repos`)
+        .then((data) => data.json())
+        .then((data) => {
+          data.forEach((ele) => {
+            repos(ele);
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+  });
 }
-repos()
-
