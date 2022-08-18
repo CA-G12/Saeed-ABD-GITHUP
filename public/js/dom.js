@@ -42,6 +42,8 @@ const card = (user, desc) => {
   userimage.src = user.data.avatar_url;
   const ancorUser = document.createElement("a");
   cardDiv.appendChild(ancorUser);
+  console.log(user.data);
+  ancorUser.href = user.data.html_url;
   const usaerName = document.createElement("h3");
   ancorUser.appendChild(usaerName);
   usaerName.textContent = user.data.login;
@@ -54,7 +56,7 @@ const card = (user, desc) => {
 const repos = (obj) => {
   //   console.log(obj, "saif");
   const repoHome = document.createElement("div");
-  repoHome.classList.add("card");
+  repoHome.classList.add("repo-card");
   const repoAncor = document.createElement("a");
   const textAncor = document.createElement("h3");
   const repoSpan = document.createElement("span");
@@ -63,7 +65,7 @@ const repos = (obj) => {
   repoAncor.appendChild(textAncor);
   repoHome.appendChild(repoSpan);
   repoAncor.href = obj.html_url;
-  console.log(repoHome);
+  console.log(obj);
   textAncor.textContent = obj.name;
   repoSpan.textContent = obj.language;
   reposDiv.appendChild(repoHome);
@@ -81,6 +83,8 @@ function rendersearchResult(arr) {
     ancor.addEventListener("click", () => {
       searchcontainer.textContent = "";
       resultContainer.textContent = "";
+      resultContainer.appendChild(reposDiv);
+      reposDiv.textContent = "";
       fetch(`users/${ele.name}`)
         .then((data) => data.json())
         .then((data) => {
