@@ -1,0 +1,208 @@
+/* ---------------Start Global Rules --------------- */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,600&display=swap");
+
+:root {
+  --main-font: "Open Sans", sans-serif;
+  --back-color: #000;
+  --main-color: #de0712;
+}
+/* ----------------- Start Header style ---------------- */
+body {
+  font-family: var(--main-font);
+  color: #fff;
+  text-align: center;
+}
+body::after {
+  content: "";
+  background-image: url("../images/github.png");
+  background-position: 50% 50%;
+  background-size: cover;
+  opacity: 0.8;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+header {
+  width: 90%;
+  height: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2.5rem 0.625rem;
+  margin: 0 auto;
+}
+header img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 0.4rem;
+}
+header .logo {
+  color: var(--back-color);
+  font-weight: bold;
+  font-size: 2.3rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* home css */
+
+#container {
+  margin: 2rem 3.5rem 0 3.5rem;
+  padding: 1rem 1rem 0 1rem;
+}
+.head {
+  display: flex;
+  position: relative;
+  display: inline-block;
+  justify-content: space-between;
+  height: 10rem;
+  align-items: center;
+  font-size: 1.5rem;
+  max-width: 1110px;
+  margin: 0 auto;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.head a:hover {
+  background-color: #ddd;
+}
+
+.search-box {
+  color: #22254b;
+  display: flex;
+  flex-direction: column;
+  min-width: 15rem;
+  font-size: 1.3rem;
+  align-items: center;
+  position: relative;
+  margin-top: 1rem;
+}
+.search-box a {
+  color: black;
+  background: #eee;
+  opacity: 0.6;
+  width: 20rem;
+  padding: 10px 24px;
+  text-decoration: none;
+  display: block;
+}
+.search-box a:last-child {
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+#search {
+  border: none;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  width: 20rem;
+  opacity: 0.7;
+  font-size: 1.1rem;
+  padding: 1.5rem;
+  background: rgb(236, 236, 236);
+  height: 2rem;
+  text-align: center;
+}
+
+#search:focus {
+  outline: 0;
+  background-color: rgb(185, 185, 185);
+}
+
+.title {
+  position: relative;
+  padding: 1.2rem;
+}
+.title::after {
+  content: "";
+  background-color: var(--back-color);
+  opacity: 0.5;
+  background-position: 50% 50%;
+  background-size: cover;
+  opacity: 0.4;
+  border-radius: 5px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+/* ----------------- End Header style ---------------- */
+
+/* ----------------- Result Section -------------------*/
+.result-container {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.result-container .card {
+  width: 20%;
+  color: #000;
+  text-align: left;
+}
+.result-container .card img {
+  width: 15rem;
+  height: 25rem;
+  border-radius: 0.6rem;
+}
+a {
+  text-decoration: none;
+  color: #000;
+}
+.result-container .card h3 {
+  font-size: 1.5rem;
+}
+.result-container .card span {
+  font-size: 1.1rem;
+}
+.repos {
+  width: 70%;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.repos .repo-card {
+  padding: 1rem;
+  text-align: left;
+  color: #000;
+  width: 15rem;
+  background-color: rgba(145, 127, 127, 0.226);
+  box-shadow: 0.2rem 0.2rem 10px #22254b;
+}
+
+/* ----------------- Result Section -------------------*/
+/* responsive 600 max  */
+@media (max-width: 600px) {
+  .head {
+    font-size: 2rem;
+    flex-direction: column;
+    gap: 1.5rem;
+    justify-content: center;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+  .result-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  #search {
+    width: 14rem;
+    text-align: left;
+    padding-left: 2rem;
+  }
+}
